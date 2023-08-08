@@ -1,5 +1,4 @@
 # 🔥 Fireblaze 
-=================
 
 Create and manage your firebase migrations
 
