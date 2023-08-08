@@ -27,7 +27,7 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`fireblaze help [COMMAND]`](#fireblaze-help-command)
+* [`fireblaze help [COMMANDS]`](#fireblaze-help-commands)
 * [`fireblaze migrate`](#fireblaze-migrate)
 * [`fireblaze migrate deploy`](#fireblaze-migrate-deploy)
 * [`fireblaze migrate generate`](#fireblaze-migrate-generate)
@@ -43,26 +43,25 @@ USAGE
 * [`fireblaze plugins:uninstall PLUGIN...`](#fireblaze-pluginsuninstall-plugin-2)
 * [`fireblaze plugins update`](#fireblaze-plugins-update)
 
-## `fireblaze help [COMMAND]`
+## `fireblaze help [COMMANDS]`
 
-display help for fireblaze
+Display help for fireblaze.
 
 ```
 USAGE
-  $ fireblaze help [COMMAND] [--json] [--all]
+  $ fireblaze help [COMMANDS] [-n]
 
 ARGUMENTS
-  COMMAND  command to show help for
+  COMMANDS  Command to show help for.
 
 FLAGS
-  --all   see all commands in CLI
-  --json  Format output as json.
+  -n, --nested-commands  Include all nested commands in the output.
 
 DESCRIPTION
-  display help for fireblaze
+  Display help for fireblaze.
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.0.0/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.16/src/commands/help.ts)_
 
 ## `fireblaze migrate`
 
@@ -70,7 +69,10 @@ Run migrations
 
 ```
 USAGE
-  $ fireblaze migrate
+  $ fireblaze migrate [--migrations <value>]
+
+FLAGS
+  --migrations=<value>  Where are your migrations located?
 
 DESCRIPTION
   Run migrations
@@ -84,10 +86,10 @@ Deploy migrations
 
 ```
 USAGE
-  $ fireblaze migrate deploy [-m <value>]
+  $ fireblaze migrate deploy [--migrations <value>]
 
 FLAGS
-  -m, --migrations=<value>  [default: migrations] Where are your migrations located?
+  --migrations=<value>  [default: migrations] Where are your migrations located?
 
 DESCRIPTION
   Deploy migrations
@@ -100,17 +102,12 @@ _See code: [dist/commands/migrate/deploy.ts](https://github.com/fireblaze-io/fir
 
 ## `fireblaze migrate generate`
 
-Generate a new migration
-
 ```
 USAGE
-  $ fireblaze migrate generate [-m <value>]
+  $ fireblaze migrate generate [--migrations <value>]
 
 FLAGS
-  -m, --migrations=<value>  [default: migrations] Where are your migrations located?
-
-DESCRIPTION
-  Generate a new migration
+  --migrations=<value>  [default: migrations] Where are your migrations located?
 
 EXAMPLES
   $ fireblaze migrate generate
@@ -124,7 +121,10 @@ List all migrations
 
 ```
 USAGE
-  $ fireblaze migrate list
+  $ fireblaze migrate list [--migrations <value>]
+
+FLAGS
+  --migrations=<value>  [default: migrations] Where are your migrations located?
 
 DESCRIPTION
   List all migrations
