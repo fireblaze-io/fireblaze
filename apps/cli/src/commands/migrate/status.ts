@@ -1,7 +1,7 @@
 import fs from "fs-extra";
 import { join } from "node:path";
 import chalk from "chalk";
-import { ux } from "@oclif/core/lib/cli-ux";
+import { ux } from "@oclif/core";
 import { BaseMigrateCommand } from "../../baseMigrateCommand";
 
 export default class Status extends BaseMigrateCommand<typeof Status> {
@@ -26,8 +26,8 @@ export default class Status extends BaseMigrateCommand<typeof Status> {
 
     this.log();
 
-    const table = migrations.map((name, index) => {
-      const migration = require(join(path, name));
+    const table = migrations.map(async (name, index) => {
+      const migration = await import(join(path, name));
 
       return {
         id: migration.id,
@@ -36,8 +36,10 @@ export default class Status extends BaseMigrateCommand<typeof Status> {
       };
     });
 
+    const contents = await Promise.all(table);
+
     ux.table(
-      table,
+      contents,
       {
         id: {
           minWidth: 7,

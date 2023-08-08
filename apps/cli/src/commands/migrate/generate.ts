@@ -1,21 +1,10 @@
-import { Command, Flags } from "@oclif/core";
+import { Command, Flags, ux } from "@oclif/core";
 import fs from "fs-extra";
 import { join } from "node:path";
-import chalk from "chalk";
-import { ux } from "@oclif/core/lib/cli-ux";
+import { BaseMigrateCommand } from "../../baseMigrateCommand";
 
-export default class Generate extends Command {
-  static description = "Generate a new migration";
-
+export default class Generate extends BaseMigrateCommand<typeof Generate> {
   static examples = [`<%= config.bin %> <%= command.id %>`];
-
-  static flags = {
-    migrations: Flags.string({
-      description: "Where are your migrations located?",
-      char: "m",
-      default: "migrations",
-    }),
-  };
 
   async run(): Promise<void> {
     const { flags } = await this.parse(Generate);

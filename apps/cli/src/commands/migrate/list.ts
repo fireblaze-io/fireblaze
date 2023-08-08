@@ -2,8 +2,9 @@ import { Command } from "@oclif/core";
 import fs from "fs-extra";
 import { join } from "node:path";
 import chalk from "chalk";
+import { BaseMigrateCommand } from "../../baseMigrateCommand";
 
-export default class List extends Command {
+export default class List extends BaseMigrateCommand<typeof List> {
   static description = "List all migrations";
 
   static examples = [`<%= config.bin %> <%= command.id %>`];
